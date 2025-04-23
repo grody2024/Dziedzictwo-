@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dziedzictwo Żelaza – Gra Miejska</title>
+  <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Uncial Antiqua', serif;
+      margin: 0;
+      padding: 0;
+      background: url('https://upload.wikimedia.org/wikipedia/commons/1/1d/Wood_texture_background.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #f8f1d9;
+    }
+    .overlay {
+      background: rgba(0, 0, 0, 0.75);
+      padding: 30px;
+      min-height: 100vh;
+    }
+    .box {
+      background: rgba(61, 33, 10, 0.9);
+      padding: 20px;
+      margin: 20px auto;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.6);
+      max-width: 900px;
+    }
+    h1, h2 {
+      text-align: center;
+      color: #ffe680;
+    }
+    ul { list-style: none; padding: 0; }
+    li { margin: 8px 0; }
+    button, input {
+      font-family: 'Uncial Antiqua', serif;
+      padding: 10px;
+      margin-top: 10px;
+    }
+    #character { font-size: 1.2em; font-weight: bold; color: #e6cfa0; }
+  </style>
+  <script>
+    const roles = [
+      "🧭 Zwiadowca – pierwszy odnajduje punkty, podejmuje ryzyko",
+      "🧵 Tkaczka – ekspertka od wzorów i symboli",
+      "🌿 Zielarka – specjalistka od wiedzy przyrodniczej",
+      "🪙 Kupiec – mistrz komunikacji i handlu",
+      "🔧 Rzemieślnik – rozwiązuje zadania techniczne",
+      "👴 Starszy – podejmuje decyzje końcowe"
+    ];
+    function startGame() {
+      const name = document.getElementById("team-name").value.trim();
+      if (!name) return alert("Wpisz nazwę drużyny!");
+      document.getElementById("start").style.display = "none";
+      document.getElementById("game").style.display = "block";
+      document.getElementById("team-display").innerText = name;
+      const role = roles[Math.floor(Math.random() * roles.length)];
+      document.getElementById("character").innerText = role;
+      document.getElementById("audio").play();
+    }
+  </script>
+</head>
+<body>
+  <div class="overlay">
+    <div class="box" id="start">
+      <h1>🎮 Dziedzictwo Żelaza</h1>
+      <p>Wpisz nazwę swojej drużyny i rozpocznij grę przygodową z nutą historii:</p>
+      <input type="text" id="team-name" placeholder="Nazwa drużyny">
+      <button onclick="startGame()">Rozpocznij</button>
+    </div>
+
+    <div class="box" id="game" style="display:none;">
+      <h2>Drużyna: <span id="team-display"></span></h2>
+      <p id="character"></p>
+      <p><strong>🎯 Cel gry:</strong></p>
+      <ul>
+        <li>• Odwiedzenie minimum 4 z 6 punktów edukacyjnych</li>
+        <li>• Rozwiązanie zadań i zdobycie Fragmentów Dziedzictwa</li>
+        <li>• Ukończenie misji pobocznej</li>
+        <li>• Udział w Radzie Grodu i podjęcie decyzji końcowej</li>
+      </ul>
+      <p><em>Odwiedzaj punkty, skanuj QR, odkrywaj wiedzę i zdobywaj punkty!</em></p>
+    </div>
+  </div>
+  <audio id="audio" autoplay loop>
+    <source src="celtic-legends-307629.mp3" type="audio/mp3">
+  </audio>
+</body>
+</html>
